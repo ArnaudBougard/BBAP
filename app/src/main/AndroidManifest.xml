@@ -40,6 +40,16 @@
             android:parentActivityName=".UserInfoActivity"
             android:label="Màj des informations"/>
 
+        <activity
+            android:name=".UserDrinksheetActivity"
+            android:parentActivityName=".UserDrinksheetActivity"
+            android:label="DRINKSHEET ®"/>
+
+        <activity
+            android:name=".UserHistoryActivity"
+            android:parentActivityName=".UserHistoryActivity"
+            android:label="Historique"/>
+
     </application>
 
 

@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class UserInfoActivity extends AppCompatActivity {
 
     TextView _tvUsername;
-    EditText _etPassword, _etEmail, _etSex, _etAge, _etHeight, _etWeight;
+    EditText _etPassword, _etEmail, _etAge, _etHeight, _etWeight;
     RadioGroup radioGroup;
     RadioButton radioButton;
     Button _bSave;
@@ -33,6 +33,8 @@ public class UserInfoActivity extends AppCompatActivity {
         _etWeight = (EditText)findViewById(R.id.etWeight);
 
         _bSave = (Button)findViewById(R.id.bSave);
+
+        radioGroup=findViewById(R.id.radioGroup);
 
         _tvUsername=(TextView)findViewById(R.id.tvUsername);
 

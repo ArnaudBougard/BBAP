@@ -20,11 +20,12 @@ public class UserAreaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_area);
 
-//        _b1 = (Button)findViewById(R.id.b1);
-//        _b2 = (Button)findViewById(R.id.b2);
-//        _b3 = (Button)findViewById(R.id.b3);
-//
-//        _tvUsername=(TextView)findViewById(R.id.tvUsername);
+        _b1 = (Button)findViewById(R.id.b1);
+        _b2 = (Button)findViewById(R.id.b2);
+        _b3 = (Button)findViewById(R.id.b3);
+
+        _tv1=(TextView)findViewById(R.id.tv1);
+        _tv2=(TextView)findViewById(R.id.tv2);
 
         Bundle bundle=getIntent().getExtras();
 
@@ -39,11 +40,11 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                Bundle bundle = new Bundle();
-//                bundle.putString("username", username);
-//                Intent intent = new Intent(UserAreaActivity.this, UserDrinksheetActivity.class);
-//                intent.putExtras(bundle);
-//                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString("username", username);
+                Intent intent = new Intent(UserAreaActivity.this, UserDrinksheetActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
 
             }
@@ -71,11 +72,11 @@ public class UserAreaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                Bundle bundle = new Bundle();
-//                bundle.putString("username", username);
-//                Intent intent = new Intent(UserAreaActivity.this, UserHistoryActivity.class);
-//                intent.putExtras(bundle);
-//                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString("username", username);
+                Intent intent = new Intent(UserAreaActivity.this, UserHistoryActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
 
             }
