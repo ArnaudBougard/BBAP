@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String username=_etUsername.getText().toString();
                 String password=_etPassword.getText().toString();
                 String email=_etEmail.getText().toString();
-                String sex="N";
+                String sex="Undefined";
                 String age=_etAge.getText().toString();
                 String height=_etHeight.getText().toString();
                 String weight=_etWeight.getText().toString();
@@ -57,14 +57,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if(radioButton.getText()=="homme"){
 
-                    sex="M";
-                    System.out.print("MALE");
+                    sex="Homme";
 
                 }
                 else if (radioButton.getText()=="femme"){
 
-                    sex="F";
-                    System.out.print("FEMALE");
+                    sex="Femme";
 
                 }
 

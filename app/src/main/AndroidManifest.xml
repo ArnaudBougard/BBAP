@@ -30,6 +30,11 @@
             android:parentActivityName=".RegisterActivity"
             android:label="Register"/>
 
+        <activity
+            android:name=".UserAreaActivity"
+            android:parentActivityName=".UserAreaActivity"
+            android:label="Home"/>
+
     </application>
 
 

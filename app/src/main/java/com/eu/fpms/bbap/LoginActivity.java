@@ -42,11 +42,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (cursor != null) {
                     if (cursor.getCount() > 0) {
                         Toast.makeText(getApplicationContext(), "Connecté avec succès !", Toast.LENGTH_SHORT).show();
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("username", username);
-//                        Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
-//                        intent.putExtras(bundle);
-//                        startActivity(intent);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("username", username);
+                        Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Erreur, mauvaise combinaison ...", Toast.LENGTH_SHORT).show();
