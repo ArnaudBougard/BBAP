@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:layout_editor_absoluteX="14dp"
-    tools:layout_editor_absoluteY="17dp">
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/etUsername"
@@ -15,9 +13,7 @@
         android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Nom d'utilisateur"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="81dp" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -28,8 +24,6 @@
         android:inputType="textPassword"
         android:selectAllOnFocus="false"
         android:singleLine="false"
-        tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="151dp"
         tools:password="false" />
 
     <EditText
@@ -49,7 +43,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_marginLeft="5dp"
             android:text="Sexe :"
@@ -57,7 +51,7 @@
 
         <RadioButton
             android:id="@+id/radio_male"
-            android:layout_width="117dp"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
             android:checked="true"
@@ -110,8 +104,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:text="S'enregistrer"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="293dp"
         tools:textSize="18sp" />
 
     <TextView

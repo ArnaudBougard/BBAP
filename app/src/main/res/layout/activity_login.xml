@@ -6,34 +6,41 @@
 
     <EditText
         android:id="@+id/etUsername"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="60dp"
         android:ems="10"
+        android:layout_gravity="center_horizontal"
         android:hint="Password"
         android:inputType="textPassword"
         android:maxLength="4" />
 
     <Button
         android:id="@+id/bLogin"
-        android:layout_width="match_parent"
-        android:layout_height="73dp"
-        android:text="Login"/>
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="Login" />
 
     <TextView
         android:id="@+id/tvRegisterHere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
         android:text="Not registered yet ?"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </LinearLayout>

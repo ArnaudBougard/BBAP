@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class UserAreaActivity extends AppCompatActivity {
 
-    TextView _tvUsername;
+    TextView _tv1, _tv2;
     Button _b1, _b2, _b3;
 
     @Override
@@ -30,7 +30,9 @@ public class UserAreaActivity extends AppCompatActivity {
 
         final String username=bundle.getString("username");
 
-        _tvUsername.setText("Bonjour, " + username + " !");
+        _tv1.setText("Bonjour, " + username + " !");
+
+        _tv2.setText("Que souhaitez-vous faire ?");
 
         _b1.setOnClickListener(new View.OnClickListener() {
 

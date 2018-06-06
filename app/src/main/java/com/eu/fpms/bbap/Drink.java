@@ -7,7 +7,6 @@ public class Drink {
     private String country;
     private String vol;
     private String kcal;
-    private String amount;
 
     public Drink(String name, String country, String vol, String kcal, String amount){
 
@@ -15,7 +14,6 @@ public class Drink {
         this.country = country;
         this.vol = vol;
         this.kcal = kcal;
-        this.amount = amount;
 
     }
 
@@ -59,11 +57,4 @@ public class Drink {
         this.kcal = kcal;
     }
 
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
 }

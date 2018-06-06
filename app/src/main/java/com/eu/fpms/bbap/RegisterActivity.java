@@ -47,24 +47,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String username=_etUsername.getText().toString();
                 String password=_etPassword.getText().toString();
                 String email=_etEmail.getText().toString();
-                String sex="Undefined";
                 String age=_etAge.getText().toString();
                 String height=_etHeight.getText().toString();
                 String weight=_etWeight.getText().toString();
 
                 int radioId = radioGroup.getCheckedRadioButtonId();
                 radioButton = findViewById(radioId);
-
-                if(radioButton.getText()=="homme"){
-
-                    sex="Homme";
-
-                }
-                else if (radioButton.getText()=="femme"){
-
-                    sex="Femme";
-
-                }
+                String sex=radioButton.getText().toString();
 
                 User user = new User(username, password, email, sex, age, height, weight);
 

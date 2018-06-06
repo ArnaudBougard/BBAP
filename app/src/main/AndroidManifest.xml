@@ -23,17 +23,22 @@
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".LoginActivity"
-            android:label="Login"/>
+            android:label="Connexion"/>
 
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".RegisterActivity"
-            android:label="Register"/>
+            android:label="Inscription"/>
 
         <activity
             android:name=".UserAreaActivity"
             android:parentActivityName=".UserAreaActivity"
-            android:label="Home"/>
+            android:label="Espace utilisateur"/>
+
+        <activity
+            android:name=".UserInfoActivity"
+            android:parentActivityName=".UserInfoActivity"
+            android:label="Màj des informations"/>
 
     </application>
 

@@ -16,6 +16,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "bbap.db";
     private static final int VERSION = 2;
 
+
+
+    // Création de la table USER
+
+
+
     public static final String TABLE_NAME="user";
 
     public static final String COL_ID="ID";
@@ -53,6 +59,68 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                                             + COL_WEIGHT + " TEXT NOT NULL );";
 
 
+
+    // Création de la table DRINKSHEET
+
+
+
+    public static final String TABLE_2_NAME="drinksheet";
+
+    public static final String COL_SHEET_ID="Sheet_ID";
+    private static final int NUM_COL_SHEET_ID = 0;
+
+    public static final String COL_HOUR="Hour";
+    private static final int NUM_COL_HOUR = 1;
+
+    public static final String COL_DATE="Date";
+    private static final int NUM_COL_DATE = 2;
+
+    public static final String COL_DRINK_LIST="Drink_List";
+    private static final int NUM_COL_DRINK_LIST = 3;
+
+    public static final String COL_AMOUNT_LIST="Amount_List";
+    private static final int NUM_COL_AMOUNT_LIST = 4;
+
+    private static final String CREATE_DRINKSHEET_TABLE = " CREATE TABLE " + TABLE_2_NAME + " ("
+                                            + COL_SHEET_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                            + COL_HOUR + " TEXT NOT NULL, "
+                                            + COL_DATE + " TEXT NOT NULL, "
+                                            + COL_DRINK_LIST + " TEXT, "
+                                            + COL_AMOUNT_LIST + " TEXT );";
+
+
+
+    // Création de la table DRINK
+
+
+
+    public static final String TABLE_3_NAME="drink";
+
+    public static final String COL_DRINK_ID="Drink_ID";
+    private static final int NUM_COL_DRINK_ID = 0;
+
+    public static final String COL_NAME="Name";
+    private static final int NUM_COL_NAME = 1;
+
+    public static final String COL_COUNTRY="Country";
+    private static final int NUM_COL_COUNTRY = 2;
+
+    public static final String COL_VOL="Vol";
+    private static final int NUM_COL_VOL = 3;
+
+    public static final String COL_KCAL="Kcal";
+    private static final int NUM_COL_KCAL = 4;
+
+    private static final String CREATE_DRINK_TABLE = " CREATE TABLE " + TABLE_3_NAME + " ("
+                                            + COL_DRINK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                                            + COL_NAME + " TEXT NOT NULL, "
+                                            + COL_COUNTRY + " TEXT NOT NULL, "
+                                            + COL_VOL + " TEXT NOT NULL, "
+                                            + COL_KCAL + " TEXT NOT NULL );";
+
+
+
+
     public DatabaseHelper(Context context) {
 
         super(context, TABLE_NAME, null, VERSION);
@@ -63,8 +131,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(CREATE_USER_TABLE);
-//        db.execSQL(CREATE_DRINKSHEET_TABLE);
-//        db.execSQL(CREATE_DRINK_TABLE);
+        db.execSQL(CREATE_DRINKSHEET_TABLE);
+        db.execSQL(CREATE_DRINK_TABLE);
         Log.i("Database","onCreate invoqué");
 
     }
@@ -73,6 +141,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase bdd, int oldVersion, int newVersion) {
 
         bdd.execSQL(" DROP TABLE " + TABLE_NAME);
+        bdd.execSQL(" DROP TABLE " + TABLE_2_NAME);
+        bdd.execSQL(" DROP TABLE " + TABLE_3_NAME);
         onCreate(bdd);
 
     }
