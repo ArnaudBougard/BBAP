@@ -13,45 +13,45 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "invibes.db";
-    private static final int VERSION = 5;
+    private static final String DB_NAME = "bbap.db";
+    private static final int VERSION = 1;
+
     public static final String TABLE_NAME="user";
+
     public static final String COL_ID="ID";
     private static final int NUM_COL_ID = 0;
-    public static final String COL_NAME="Name";
-    private static final int NUM_COL_NAME = 1;
+
     public static final String COL_USERNAME="Username";
-    private static final int NUM_COL_USERNAME = 2;
+    private static final int NUM_COL_USERNAME = 1;
+
     public static final String COL_PASSWORD="Password";
-    private static final int NUM_COL_PASSWORD = 3;
+    private static final int NUM_COL_PASSWORD = 2;
 
-    public static final String COL_TMIN="Tmin";
-    public static final String COL_TMAX="Tmax";
-    public static final String COL_HMIN="Hmin";
-    public static final String COL_HMAX="Hmax";
-    public static final String COL_BMIN="Bmin";
-    public static final String COL_BMAX="Bmax";
-    public static final String COL_PHONE="Phone";
-    private static final int NUM_COL_TMIN = 4;
-    private static final int NUM_COL_TMAX = 5;
-    private static final int NUM_COL_HMIN = 6;
-    private static final int NUM_COL_HMAX = 7;
-    private static final int NUM_COL_BMIN = 8;
-    private static final int NUM_COL_BMAX = 9;
-    private static final int NUM_COL_PHONE = 10;
+    public static final String COL_EMAIL="Email";
+    private static final int NUM_COL_EMAIL = 3;
 
-    private static final String CREATE_DB = " CREATE TABLE " + TABLE_NAME + " ("
+    public static final String COL_SEX="Sex";
+    private static final int NUM_COL_SEX = 4;
+
+    public static final String COL_AGE="Age";
+    private static final int NUM_COL_AGE = 5;
+
+    public static final String COL_HEIGHT="Height";
+    private static final int NUM_COL_HEIGHT = 6;
+
+    public static final String COL_WEIGHT="Weight";
+    private static final int NUM_COL_WEIGHT = 7;
+
+    private static final String CREATE_USER_TABLE = " CREATE TABLE " + TABLE_NAME + " ("
                                             + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                                            + COL_NAME + " TEXT NOT NULL, "
                                             + COL_USERNAME + " TEXT NOT NULL, "
                                             + COL_PASSWORD + " TEXT NOT NULL, "
-                                            + COL_TMIN + " TEXT, "
-                                            + COL_TMAX + " TEXT, "
-                                            + COL_HMIN + " TEXT, "
-                                            + COL_HMAX + " TEXT, "
-                                            + COL_BMIN + " TEXT, "
-                                            + COL_BMAX + " TEXT, "
-                                            + COL_PHONE + " TEXT );";
+                                            + COL_EMAIL + " TEXT NOT NULL, "
+                                            + COL_SEX + " TEXT NOT NULL, "
+                                            + COL_AGE + " TEXT NOT NULL, "
+                                            + COL_HEIGHT + " TEXT NOT NULL, "
+                                            + COL_WEIGHT + " TEXT NOT NULL );";
+
 
     public DatabaseHelper(Context context) {
 
@@ -62,14 +62,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL(CREATE_DB);
+        db.execSQL(CREATE_USER_TABLE);
+//        db.execSQL(CREATE_DRINKSHEET_TABLE);
+//        db.execSQL(CREATE_DRINK_TABLE);
         Log.i("Database","onCreate invoqué");
 
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase bdd, int oldVersion, int newVersion) {
+
         bdd.execSQL(" DROP TABLE " + TABLE_NAME);
         onCreate(bdd);
+
     }
 
     public Cursor LoginCheck (String username, String password){
@@ -82,7 +87,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long insertUser(User user) {
 
         ContentValues content = new ContentValues();
-        content.put(COL_NAME, user.getName());
         content.put(COL_USERNAME, user.getUsername());
         content.put(COL_PASSWORD, user.getPassword());
 
@@ -90,15 +94,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean updateUserPreferences(String username, String Tmin, String Tmax, String Hmin, String Hmax, String Bmin, String Bmax, String Phone) {
+    public boolean updateUserInformations(String username, String password, String email, String sex, String age, String height, String weight) {
+
             ContentValues content = new ContentValues();
-            content.put(COL_TMIN, Tmin);
-            content.put(COL_TMAX, Tmax);
-            content.put(COL_HMIN, Hmin);
-            content.put(COL_HMAX, Hmax);
-            content.put(COL_BMIN, Bmin);
-            content.put(COL_BMAX, Bmax);
-            content.put(COL_PHONE, Phone);
+            content.put(COL_PASSWORD, password);
+            content.put(COL_EMAIL, email);
+            content.put(COL_SEX, sex);
+            content.put(COL_AGE, age);
+            content.put(COL_HEIGHT, height);
+            content.put(COL_WEIGHT, weight);
 
            this.getWritableDatabase().update(TABLE_NAME, content, COL_USERNAME + " =? ", new String[]{username});
 

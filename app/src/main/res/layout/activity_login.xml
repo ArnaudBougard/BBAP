@@ -5,46 +5,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    android:layout_width="347dp"
-    android:layout_height="472dp"
-    android:orientation="vertical"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.513"
-    app:layout_constraintStart_toStartOf="parent"
-    tools:layout_editor_absoluteY="19dp">
 
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
-        android:layout_height="59dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:hint="Username"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="33dp" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="60dp"
         android:ems="10"
-        android:hint="Password (4 digits)"
-        android:inputType="numberPassword"
-        android:maxLength="4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="108dp" />
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:maxLength="4" />
 
     <Button
         android:id="@+id/bLogin"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        android:text="Login"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="194dp" />
+        android:text="Login"/>
 
     <TextView
         android:id="@+id/tvRegisterHere"
@@ -53,8 +36,6 @@
         android:text="Not registered yet ?"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="290dp" />
+        android:textStyle="bold"/>
 
 </LinearLayout>

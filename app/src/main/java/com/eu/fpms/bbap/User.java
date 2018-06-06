@@ -1,5 +1,7 @@
 package com.eu.fpms.bbap;
 
+import java.util.ArrayList;
+
 /**
  * Created by Arnaud on 14-05-18.
  */
@@ -14,6 +16,8 @@ public class User {
     private String age;
     private String height;
     private String weight;
+
+    public User(){};
 
     public User(String username, String password, String email, String sex, String age, String height, String weight) {
 
