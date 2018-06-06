@@ -10,7 +10,7 @@
 
     <EditText
         android:id="@+id/etUsername"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="60dp"
         android:ems="10"
         android:hint="Nom d'utilisateur"
@@ -20,7 +20,7 @@
 
     <EditText
         android:id="@+id/etPassword"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="60dp"
         android:ems="10"
         android:hint="Mot de passe"
@@ -33,7 +33,7 @@
 
     <EditText
         android:id="@+id/etEmail"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="60dp"
         android:ems="10"
         android:hint="Email"
@@ -41,29 +41,17 @@
         android:selectAllOnFocus="false"
         android:singleLine="false" />
 
-    <!--
-    <EditText
-        android:id="@+id/etSex"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:ems="10"
-        android:hint="Sexe"
-        android:inputType="text"
-        android:selectAllOnFocus="false"
-        android:singleLine="false" />
-
-        -->
-
-
     <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:text="Sexe"
+            android:layout_marginLeft="5dp"
+            android:text="Sexe :"
             android:textSize="18dp" />
 
         <RadioButton
@@ -71,6 +59,7 @@
             android:layout_width="117dp"
             android:layout_height="60dp"
             android:layout_weight="1"
+            android:checked="true"
             android:text="homme" />
 
         <RadioButton
@@ -85,7 +74,7 @@
 
     <EditText
         android:id="@+id/etAge"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="60dp"
         android:ems="10"
         android:hint="Âge"
@@ -95,20 +84,20 @@
 
     <EditText
         android:id="@+id/etHeight"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="60dp"
         android:ems="10"
-        android:hint="Taille"
+        android:hint="Taille (cm)"
         android:inputType="number"
         android:selectAllOnFocus="false"
         android:singleLine="false" />
 
     <EditText
         android:id="@+id/etWeight"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="60dp"
         android:ems="10"
-        android:hint="Poids"
+        android:hint="Poids (kg)"
         android:inputType="number"
         android:selectAllOnFocus="false"
         android:singleLine="false" />
@@ -118,6 +107,7 @@
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
         android:text="S'enregistrer"
         tools:layout_editor_absoluteX="99dp"
         tools:layout_editor_absoluteY="293dp"
@@ -127,6 +117,7 @@
         android:id="@+id/tvGoLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="Déjà inscrit ? Connecte-toi !"
         android:textAlignment="center"

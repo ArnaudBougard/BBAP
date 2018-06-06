@@ -24,10 +24,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
-//        _etUsername = (EditText)findViewById(R.id.etUsername);
-//        _etPassword = (EditText)findViewById(R.id.etPassword);
-//        _bLogin=(Button)findViewById(R.id.bLogin);
-//        _tvRegisterHere=(TextView)findViewById(R.id.tvRegisterHere);
+        _etUsername = (EditText)findViewById(R.id.etUsername);
+        _etPassword = (EditText)findViewById(R.id.etPassword);
+        _bLogin=(Button)findViewById(R.id.bLogin);
+        _tvRegisterHere=(TextView)findViewById(R.id.tvRegisterHere);
 
         _bLogin.setOnClickListener(new View.OnClickListener() {
             @Override

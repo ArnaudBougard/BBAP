@@ -11,7 +11,8 @@
         android:name=".BBAP">
 
         <activity
-            android:name=".SplashActivity" android:theme="@style/SplashTheme"
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
             android:parentActivityName=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,9 +20,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:parentActivityName=".LoginActivity"
-            android:label="Welcome"/>
+            android:label="Login"/>
+
+        <activity
+            android:name=".RegisterActivity"
+            android:parentActivityName=".RegisterActivity"
+            android:label="Register"/>
+
     </application>
 
 
