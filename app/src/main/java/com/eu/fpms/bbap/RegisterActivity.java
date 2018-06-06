@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class RegisterActivity extends AppCompatActivity {
 
     Button _bRegister;
-    EditText _etName, _etUsername, _etPassword;
+    EditText _etUsername, _etPassword, _etEmail, _etSex, _etAge, _etHeight, _etWeight;
     TextView _tvGoLogin;
 
     @Override
@@ -23,9 +23,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
-        _etName = (EditText)findViewById(R.id.etName);
         _etUsername = (EditText)findViewById(R.id.etUsername);
         _etPassword = (EditText)findViewById(R.id.etPassword);
+        _etEmail = (EditText)findViewById(R.id.etEmail);
+        _etSex = (EditText)findViewById(R.id.etSex);
+        _etAge = (EditText)findViewById(R.id.etAge);
+        _etHeight = (EditText)findViewById(R.id.etHeight);
+        _etWeight = (EditText)findViewById(R.id.etWeight);
         _bRegister=(Button)findViewById(R.id.bRegister);
         _tvGoLogin=(TextView)findViewById(R.id.tvGoLogin);
 
@@ -34,11 +38,15 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String name=_etName.getText().toString();
                 String username=_etUsername.getText().toString();
                 String password=_etPassword.getText().toString();
+                String email=_etEmail.getText().toString();
+                String sex=_etSex.getText().toString();
+                String age=_etAge.getText().toString();
+                String height=_etHeight.getText().toString();
+                String weight=_etWeight.getText().toString();
 
-                User user = new User(name, username, password);
+                User user = new User(username, password, email, sex, age, height, weight);
 
                 databaseHelper.insertUser(user);
 
