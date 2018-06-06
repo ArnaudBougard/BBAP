@@ -41,6 +41,7 @@
         android:selectAllOnFocus="false"
         android:singleLine="false" />
 
+    <!--
     <EditText
         android:id="@+id/etSex"
         android:layout_width="match_parent"
@@ -50,6 +51,37 @@
         android:inputType="text"
         android:selectAllOnFocus="false"
         android:singleLine="false" />
+
+        -->
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="Sexe"
+            android:textSize="18dp" />
+
+        <RadioButton
+            android:id="@+id/radio_male"
+            android:layout_width="117dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="homme" />
+
+        <RadioButton
+            android:id="@+id/radio_female"
+            android:layout_width="117dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="femme" />
+
+
+    </RadioGroup>
 
     <EditText
         android:id="@+id/etAge"
@@ -100,6 +132,9 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textStyle="bold" />
+
+
+
 
 
 </LinearLayout>

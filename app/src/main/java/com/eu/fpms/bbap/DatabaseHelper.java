@@ -110,8 +110,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public User fetchUserInfo( String username ) {
-        Cursor c = this.getReadableDatabase().query(TABLE_NAME, new String[] { COL_ID, COL_NAME, COL_USERNAME, COL_PASSWORD, COL_TMIN, COL_TMAX,
-                COL_HMIN, COL_HMAX, COL_BMIN, COL_BMAX, COL_PHONE }, COL_USERNAME + " =? ", new String[]{username}, null, null, null, null);
+        Cursor c = this.getReadableDatabase().query(TABLE_NAME, new String[] { COL_ID, COL_USERNAME, COL_PASSWORD, COL_EMAIL, COL_SEX,
+                COL_AGE, COL_HEIGHT, COL_WEIGHT}, COL_USERNAME + " =? ", new String[]{username}, null, null, null, null);
 
         User currentUser = new User();
 
@@ -127,16 +127,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 do{
 
                     currentUser.setId(c.getInt(NUM_COL_ID));
-                    currentUser.setName(c.getString(NUM_COL_NAME));
                     currentUser.setUsername(c.getString(NUM_COL_USERNAME));
                     currentUser.setPassword(c.getString(NUM_COL_PASSWORD));
-                    currentUser.setTmin(c.getString(NUM_COL_TMIN));
-                    currentUser.setTmax(c.getString(NUM_COL_TMAX));
-                    currentUser.setHmin(c.getString(NUM_COL_HMIN));
-                    currentUser.setHmax(c.getString(NUM_COL_HMAX));
-                    currentUser.setBmin(c.getString(NUM_COL_BMIN));
-                    currentUser.setBmax(c.getString(NUM_COL_BMAX));
-                    currentUser.setPhone(c.getString(NUM_COL_PHONE));
+                    currentUser.setEmail(c.getString(NUM_COL_EMAIL));
+                    currentUser.setSex(c.getString(NUM_COL_SEX));
+                    currentUser.setAge(c.getString(NUM_COL_AGE));
+                    currentUser.setHeight(c.getString(NUM_COL_HEIGHT));
+                    currentUser.setWeight(c.getString(NUM_COL_WEIGHT));
+
 
                 }while(c.moveToNext());
 
