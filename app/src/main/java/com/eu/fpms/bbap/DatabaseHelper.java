@@ -14,7 +14,7 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "bbap.db";
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
 
     public static final String TABLE_NAME="user";
 
@@ -89,6 +89,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues content = new ContentValues();
         content.put(COL_USERNAME, user.getUsername());
         content.put(COL_PASSWORD, user.getPassword());
+        content.put(COL_EMAIL, user.getEmail());
+        content.put(COL_SEX, user.getSex());
+        content.put(COL_AGE, user.getAge());
+        content.put(COL_HEIGHT, user.getHeight());
+        content.put(COL_WEIGHT, user.getWeight());
 
         return this.getWritableDatabase().insert(TABLE_NAME, null, content);
 

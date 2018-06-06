@@ -12,6 +12,7 @@
         android:id="@+id/etUsername"
         android:layout_width="350dp"
         android:layout_height="60dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Nom d'utilisateur"
         android:inputType="textPersonName"

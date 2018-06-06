@@ -58,11 +58,13 @@ public class RegisterActivity extends AppCompatActivity {
                 if(radioButton.getText()=="homme"){
 
                     sex="M";
+                    System.out.print("MALE");
 
                 }
                 else if (radioButton.getText()=="femme"){
 
                     sex="F";
+                    System.out.print("FEMALE");
 
                 }
 

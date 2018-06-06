@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
         _etUsername = (EditText)findViewById(R.id.etUsername);
         _etPassword = (EditText)findViewById(R.id.etPassword);
+
         _bLogin=(Button)findViewById(R.id.bLogin);
         _tvRegisterHere=(TextView)findViewById(R.id.tvRegisterHere);
 
@@ -37,11 +38,12 @@ public class LoginActivity extends AppCompatActivity {
                 String password = _etPassword.getText().toString();
 
                 cursor = databaseHelper.LoginCheck(username,password);
+
                 if (cursor != null) {
                     if (cursor.getCount() > 0) {
                         Toast.makeText(getApplicationContext(), "Connecté avec succès !", Toast.LENGTH_SHORT).show();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("username", username);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("username", username);
 //                        Intent intent = new Intent(LoginActivity.this, UserAreaActivity.class);
 //                        intent.putExtras(bundle);
 //                        startActivity(intent);
