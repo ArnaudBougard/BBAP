@@ -2,14 +2,22 @@ package com.eu.fpms.bbap;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ListView;
 
 public class UserDrinksheetActivity extends AppCompatActivity {
+
+    ListView listView;
+    String[] beername = {"orval","chimay bleue","rochefort 8"};
+    Integer[] imageId = {R.drawable.Orval, R.drawable.chimay_bleue, R.drawable.rochefort};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_drinksheet);
+
+        listView = (ListView) findViewById(R.id.dynamicListView);
+
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
     }
