@@ -8,6 +8,8 @@ public class Drink {
     private String vol;
     private String kcal;
 
+    public Drink(){}
+
     public Drink(String name, String country, String vol, String kcal, String amount){
 
         this.name = name;

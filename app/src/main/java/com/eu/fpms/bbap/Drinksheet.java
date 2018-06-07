@@ -8,6 +8,8 @@ public class Drinksheet {
     private String drink_list;
     private String amount_list;
 
+    public Drinksheet(){}
+
     public Drinksheet(String hour, String date){
 
         this.hour = hour;

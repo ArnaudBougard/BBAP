@@ -133,16 +133,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_DRINKSHEET_TABLE);
         db.execSQL(CREATE_DRINK_TABLE);
-        Log.i("Database","onCreate invoqué");
+        Log.i("Database","onCreates invoqués");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase bdd, int oldVersion, int newVersion) {
 
-        bdd.execSQL(" DROP TABLE " + TABLE_NAME);
-        bdd.execSQL(" DROP TABLE " + TABLE_2_NAME);
-        bdd.execSQL(" DROP TABLE " + TABLE_3_NAME);
+        bdd.execSQL(" DROP TABLE IF EXISTS " + TABLE_NAME);
+        bdd.execSQL(" DROP TABLE IF EXISTS " + TABLE_2_NAME);
+        bdd.execSQL(" DROP TABLE IF EXISTS " + TABLE_3_NAME);
         onCreate(bdd);
 
     }
@@ -169,6 +169,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public long insertDrinksheet(Drinksheet drinksheet) {
+
+        ContentValues content = new ContentValues();
+        content.put(COL_HOUR, drinksheet.getHour());
+        content.put(COL_DATE, drinksheet.getDate());
+
+        return this.getWritableDatabase().insert(TABLE_2_NAME, null, content);
+
+    }
+
+    public long insertDrink(Drink drink) {
+
+        ContentValues content = new ContentValues();
+        content.put(COL_NAME, drink.getName());
+        content.put(COL_COUNTRY, drink.getCountry());
+        content.put(COL_VOL, drink.getVol());
+        content.put(COL_KCAL, drink.getKcal());
+
+        return this.getWritableDatabase().insert(TABLE_3_NAME, null, content);
+
+    }
+
     public boolean updateUserInformations(String username, String password, String email, String sex, String age, String height, String weight) {
 
             ContentValues content = new ContentValues();
@@ -184,9 +206,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
            return true;
     }
 
+    public boolean updateDrinksheetContent(int sheet_id, String drink_list, String amount_list){
+
+        ContentValues content = new ContentValues();
+        content.put(COL_DRINK_LIST, drink_list);
+        content.put(COL_AMOUNT_LIST, amount_list);
+
+        this.getWritableDatabase().update(TABLE_2_NAME, content, COL_SHEET_ID + " =? " + sheet_id, null);
+
+        return true;
+
+    }
+
     public User fetchUserInfo( String username ) {
+
         Cursor c = this.getReadableDatabase().query(TABLE_NAME, new String[] { COL_ID, COL_USERNAME, COL_PASSWORD, COL_EMAIL, COL_SEX,
-                COL_AGE, COL_HEIGHT, COL_WEIGHT}, COL_USERNAME + " =? ", new String[]{username}, null, null, null, null);
+                COL_AGE, COL_HEIGHT, COL_WEIGHT }, COL_USERNAME + " =? ", new String[]{username}, null, null, null, null);
 
         User currentUser = new User();
 
@@ -210,7 +245,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     currentUser.setHeight(c.getString(NUM_COL_HEIGHT));
                     currentUser.setWeight(c.getString(NUM_COL_WEIGHT));
 
-
                 }while(c.moveToNext());
 
             }
@@ -218,6 +252,76 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         c.close();
         return currentUser;
+    }
+
+    public Drinksheet fetchDrinksheetInfo(int sheet_id){
+
+        Cursor c = this.getReadableDatabase().query(TABLE_2_NAME, new String[] { COL_SHEET_ID, COL_HOUR, COL_DATE, COL_DRINK_LIST, COL_AMOUNT_LIST }, COL_SHEET_ID + " =? " + sheet_id,
+                null, null, null, null, null);
+
+        Drinksheet currentDrinksheet = new Drinksheet();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return null;
+        }
+        else{
+
+            c.moveToFirst();
+
+            if(c.getCount() >= 1){
+                do{
+
+                    currentDrinksheet.setId(c.getInt(NUM_COL_SHEET_ID));
+                    currentDrinksheet.setHour(c.getString(NUM_COL_HOUR));
+                    currentDrinksheet.setDate(c.getString(NUM_COL_DATE));
+                    currentDrinksheet.setDrink_list(c.getString(NUM_COL_DRINK_LIST));
+                    currentDrinksheet.setDrink_list(c.getString(NUM_COL_AMOUNT_LIST));
+
+                }while(c.moveToNext());
+
+            }
+        }
+
+        c.close();
+
+        return currentDrinksheet;
+
+    }
+
+    public Drink fetchDrinkInfo(int drink_id){
+
+        Cursor c = this.getReadableDatabase().query(TABLE_3_NAME, new String[] { COL_DRINK_ID, COL_NAME, COL_COUNTRY, COL_VOL, COL_KCAL }, COL_SHEET_ID + " =? " + drink_id,
+                null, null, null, null, null);
+
+        Drink currentDrink = new Drink();
+
+        if (c.getCount() == 0) {
+            c.close();
+            return null;
+        }
+        else{
+
+            c.moveToFirst();
+
+            if(c.getCount() >= 1){
+                do{
+
+                    currentDrink.setId(c.getInt(NUM_COL_DRINK_ID));
+                    currentDrink.setName(c.getString(NUM_COL_NAME));
+                    currentDrink.setCountry(c.getString(NUM_COL_COUNTRY));
+                    currentDrink.setVol(c.getString(NUM_COL_VOL));
+                    currentDrink.setKcal(c.getString(NUM_COL_KCAL));
+
+                }while(c.moveToNext());
+
+            }
+        }
+
+        c.close();
+
+        return currentDrink;
+
     }
 
 }
