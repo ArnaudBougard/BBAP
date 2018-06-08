@@ -1,14 +1,30 @@
 package com.eu.fpms.bbap;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
-public class UserDrinksheetActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    ListView listView;
-    String[] beername = {"orval","chimay bleue","rochefort 8"};
-    Integer[] imageId = {R.drawable.Orval, R.drawable.chimay_bleue, R.drawable.rochefort};
+public class UserDrinksheetActivity extends AppCompatActivity implements OnClickListener {
+
+    //ListView listView;
+    //String[] beername = {"orval","chimay bleue","rochefort 8"};
+    //Integer[] imageId = {R.drawable.Orval, R.drawable.chimay_bleue, R.drawable.rochefort};
+
+    //DECLARATION
+    ImageButton imageButton;
+    String[] beerName = {"orval","chimay bleue","rochefort 8"};
+    AlertDialog ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,9 +32,51 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_drinksheet);
 
-        listView = (ListView) findViewById(R.id.dynamicListView);
+        //INITIALIZATIONS
+        imageButton = (ImageButton)findViewById(R.id.btn_alert_dialog);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                ad.show();
+                //open_dialog(v);
+            }
+        });
+
+        //BUILD ALERTDIALOG
+        AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
+        theBuilder.setTitle("Fils,une bière se déguste avec Sagesse!");
+        theBuilder.setItems(beerName,this);
+
+        //CANCEL ALERTDIALOG
+        theBuilder.setNegativeButton("Stop! je suis déjà charette!",null);
+        ad = theBuilder.create();
+
+        //DATABASE
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int position) {
+
+        String selectedItem = beerName[position];
+        Toast.makeText(UserDrinksheetActivity.this, selectedItem +" ajoutée",Toast.LENGTH_LONG).show();
+
+    }
+
+    public void open_dialog(View view){
+
+        AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View row = inflater.inflate(R.layout.listview_layout,null);
+        ListView listView = (ListView)findViewById(R.id.dynamicListView);
+
+        listView.setAdapter(new CustomAdapter(this));
+
+        theBuilder.setView(row);
+        AlertDialog dialog = theBuilder.create();
+        dialog.show();
 
     }
 
@@ -150,5 +208,6 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         return temps;
         // Le temps est en heures !
     }
+
 
 }
