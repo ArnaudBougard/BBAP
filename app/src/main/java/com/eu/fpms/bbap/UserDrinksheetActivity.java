@@ -2,31 +2,29 @@ package com.eu.fpms.bbap;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class UserDrinksheetActivity extends AppCompatActivity implements OnClickListener {
-
-    //ListView listView;
-    //String[] beername = {"orval","chimay bleue","rochefort 8"};
-    //Integer[] imageId = {R.drawable.Orval, R.drawable.chimay_bleue, R.drawable.rochefort};
+public class UserDrinksheetActivity extends AppCompatActivity {
+    
 
     //DECLARATION
+    ListView listView;
     ImageButton imageButton;
     String[] beerName = {"orval","chimay bleue","rochefort 8"};
-    AlertDialog ad;
-    ListView listView;
+    int[] imageId = {R.drawable.orval, R.drawable.chimay_bleue, R.drawable.rochefort};
+
+
     ArrayList<String> drinkArrayList;
     ArrayAdapter<String> adapter;
 
@@ -37,70 +35,68 @@ public class UserDrinksheetActivity extends AppCompatActivity implements OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_drinksheet);
 
-        //INITIALIZATIONS
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-       /* listView = (ListView)findViewById(R.id.dynamicListView);
-
-        drinkArrayList = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(UserDrinksheetActivity.this, R.layout.activity_user_drinksheet, drinkArrayList);
-
-        listView.setAdapter(adapter);  */
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         imageButton = (ImageButton)findViewById(R.id.btn_alert_dialog);
+        listView = (ListView) findViewById(R.id.dynamicListView);
+
+        drinkArrayList = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(UserDrinksheetActivity.this, android.R.layout.simple_list_item_1, drinkArrayList);
+        listView.setAdapter(adapter);
+
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ad.show();
-                //open_dialog(v);
+                //BUILD ALERTDIALOG
+                AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
+
+                theBuilder.setTitle("Fils,une bière se déguste avec Sagesse!");
+                theBuilder.setItems(beerName, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),beerName[which]+" ajoutée à votre drinksheet", Toast.LENGTH_SHORT).show();
+
+                       drinkArrayList.add(beerName[which]);
+                       adapter.notifyDataSetChanged();
+                    }
+                });
+
+                //ad.show();
+                //open_dialog(v,ad);
+                theBuilder.setNegativeButton("Stop! je suis déjà charette!",null);
+                AlertDialog alertDialog = theBuilder.create();
+                alertDialog.show();
             }
+
+
         });
 
-        //BUILD ALERTDIALOG
-        AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
-        theBuilder.setTitle("Fils,une bière se déguste avec Sagesse!");
-        theBuilder.setItems(beerName,this);
-
-        //CANCEL ALERTDIALOG
-        theBuilder.setNegativeButton("Stop! je suis déjà charette!",null);
-        ad = theBuilder.create();
-
-
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //DATABASE
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
     }
 
-    @Override
-    public void onClick(DialogInterface dialog, int position) {
-
-        String selectedItem = beerName[position];
-        Toast.makeText(UserDrinksheetActivity.this, selectedItem +" ajoutée",Toast.LENGTH_LONG).show();
-
-        /*drinkArrayList.add(selectedItem);
-        adapter.notifyDataSetChanged();  */
 
 
-    }
 
-    public void open_dialog(View view){
+   /* public void open_dialog(View view, AlertDialog dialog){
 
         AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
         LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.listview_layout,null);
-        ListView listView = (ListView)findViewById(R.id.dynamicListView);
+        ListView listView = (ListView)findViewById(R.id.listview_alertDialog);
 
         listView.setAdapter(new CustomAdapter(this));
 
         theBuilder.setView(row);
-        AlertDialog dialog = theBuilder.create();
+
+        dialog = theBuilder.create();
         dialog.show();
 
-    }
+    }*/
 
 
 
