@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -25,6 +26,10 @@ public class UserDrinksheetActivity extends AppCompatActivity implements OnClick
     ImageButton imageButton;
     String[] beerName = {"orval","chimay bleue","rochefort 8"};
     AlertDialog ad;
+    ListView listView;
+    ArrayList<String> drinkArrayList;
+    ArrayAdapter<String> adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,16 @@ public class UserDrinksheetActivity extends AppCompatActivity implements OnClick
         setContentView(R.layout.activity_user_drinksheet);
 
         //INITIALIZATIONS
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       /* listView = (ListView)findViewById(R.id.dynamicListView);
+
+        drinkArrayList = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(UserDrinksheetActivity.this, R.layout.activity_user_drinksheet, drinkArrayList);
+
+        listView.setAdapter(adapter);  */
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         imageButton = (ImageButton)findViewById(R.id.btn_alert_dialog);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +67,9 @@ public class UserDrinksheetActivity extends AppCompatActivity implements OnClick
         theBuilder.setNegativeButton("Stop! je suis déjà charette!",null);
         ad = theBuilder.create();
 
+
+
+
         //DATABASE
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
 
@@ -62,6 +80,10 @@ public class UserDrinksheetActivity extends AppCompatActivity implements OnClick
 
         String selectedItem = beerName[position];
         Toast.makeText(UserDrinksheetActivity.this, selectedItem +" ajoutée",Toast.LENGTH_LONG).show();
+
+        /*drinkArrayList.add(selectedItem);
+        adapter.notifyDataSetChanged();  */
+
 
     }
 
@@ -79,6 +101,8 @@ public class UserDrinksheetActivity extends AppCompatActivity implements OnClick
         dialog.show();
 
     }
+
+
 
     public double algorithmeAlcoolemie(double volume, double taux, int poids, int taille, int age, String sexe){
 
