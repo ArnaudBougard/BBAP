@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -34,6 +35,10 @@ public class UserDrinksheetActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ListView listView;
 
+    Button calculAlcool;
+    Button calculCaL;
+    Button calculTemps;
+
 
 
     @Override
@@ -53,7 +58,7 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         //DATABASE
         final DatabaseHelper myDb = new DatabaseHelper(this);
 
-
+        //ON CLICK FOR ALERT DIALOG BUTTON
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +114,7 @@ public class UserDrinksheetActivity extends AppCompatActivity {
             }
         });
 
+        theBuilder.setNegativeButton("Stop! je suis déjà charette!",null);
         alert = theBuilder.create();
         alert.setTitle("Fils,une bière se déguste avec Sagesse!");
         alert.show();
