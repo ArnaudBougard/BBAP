@@ -26,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        //final DBAdapter myDb = new DBAdapter(this);
 
         _etUsername = (EditText)findViewById(R.id.etUsername);
         _etPassword = (EditText)findViewById(R.id.etPassword);

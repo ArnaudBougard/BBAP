@@ -2,31 +2,45 @@ package com.eu.fpms.bbap;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class UserDrinksheetActivity extends AppCompatActivity {
-    
+
 
     //DECLARATION
-    ListView listView;
+
+
+    //String[] beerName = {"orval","chimay bleue","rochefort 8"};
+
+    //ArrayList <String> bubu;
+   // ArrayList<Drink> beer;
+
+
+    //int[] imageId = {R.drawable.orval, R.drawable.chimay_bleue, R.drawable.rochefort};
+
     ImageButton imageButton;
-    String[] beerName = {"orval","chimay bleue","rochefort 8"};
-    int[] imageId = {R.drawable.orval, R.drawable.chimay_bleue, R.drawable.rochefort};
+    ArrayList<String> drinkArrayList = new ArrayList<String>();;
+    AlertDialog alert;
 
-
-    ArrayList<String> drinkArrayList;
+    ArrayList<String> drinkList;
     ArrayAdapter<String> adapter;
+    ListView listView;
+
 
 
     @Override
@@ -35,38 +49,62 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_drinksheet);
 
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //INITIALIZATION
         imageButton = (ImageButton)findViewById(R.id.btn_alert_dialog);
         listView = (ListView) findViewById(R.id.dynamicListView);
 
-        drinkArrayList = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(UserDrinksheetActivity.this, android.R.layout.simple_list_item_1, drinkArrayList);
+        drinkList = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(UserDrinksheetActivity.this, android.R.layout.simple_list_item_1, drinkList);
         listView.setAdapter(adapter);
+
+        //DATABASE
+        //final DBAdapter myDb = new DBAdapter(this);
+        final DatabaseHelper myDb = new DatabaseHelper(this);
+
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                drinkArrayList.clear();
+
+                //OPEN DB
+                //myDb.openDB();
+
+                //RETRIEVE DATA FROM DB TO PUT IN ALERTDIALOG
+                Cursor cursor = myDb.fetchDrinkInfo();
+                while (cursor.moveToNext()){
+
+                    String drinkName = cursor.getString(1);
+                    drinkArrayList.add(drinkName);
+                }
+
+
+                //METHOD: CREATE ALERTDIALOG
+                showDialog();
+
+
+
+
                 //BUILD ALERTDIALOG
-                AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
+                /*AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
 
                 theBuilder.setTitle("Fils,une bière se déguste avec Sagesse!");
                 theBuilder.setItems(beerName, new DialogInterface.OnClickListener() {
-                    @Override
+                   @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(getApplicationContext(),beerName[which]+" ajoutée à votre drinksheet", Toast.LENGTH_SHORT).show();
 
+
                        drinkArrayList.add(beerName[which]);
                        adapter.notifyDataSetChanged();
-                    }
-                });
+                   }
+                }); */
 
-                //ad.show();
                 //open_dialog(v,ad);
-                theBuilder.setNegativeButton("Stop! je suis déjà charette!",null);
-                AlertDialog alertDialog = theBuilder.create();
-                alertDialog.show();
+                //theBuilder.setNegativeButton("Stop! je suis déjà charette!",null);
+                //AlertDialog alertDialog = theBuilder.create();
+                //alertDialog.show();
             }
 
 
@@ -75,9 +113,56 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //DATABASE
-        final DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        //final DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        //final DatabaseHelper myDb = new DatabaseHelper(this);
+        //populateListViewAlertDialog(myDb);
+
 
     }
+
+    private void showDialog(){
+
+        AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
+
+        //add data
+        int numberOfDrinks = drinkArrayList.size();
+        final String[] names = new String[numberOfDrinks];
+
+        for(int i=0; i<numberOfDrinks; i++){
+
+            names[i] = drinkArrayList.get(i);
+        }
+
+
+        theBuilder.setItems(names, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),names[which] + " ajoutée à votre drinksheet", Toast.LENGTH_SHORT).show();
+
+                drinkList.add(names[which]);
+                adapter.notifyDataSetChanged();
+
+            }
+        });
+
+        alert = theBuilder.create();
+        alert.setTitle("Fils,une bière se déguste avec Sagesse!");
+        alert.show();
+
+    }
+
+
+
+   /* private void populateListViewAlertDialog(DatabaseHelper db){
+
+        Cursor cursor = (Cursor) db.fetchDrinkInfo();
+        String[] fieldName = new String[] {DatabaseHelper.COL_NAME};
+        int[] toViewId = new int[] {R.id.tvBeername};
+        SimpleCursorAdapter myCursorAdapter;
+        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(),R.layout.row_item,cursor,fieldName,toViewId,0);
+        ListView myList = (ListView)findViewById(R.id.listview_alertDialog);
+        myList.setAdapter(myCursorAdapter);
+    } */
 
 
 

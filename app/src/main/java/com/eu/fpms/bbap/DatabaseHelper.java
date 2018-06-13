@@ -14,6 +14,7 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "bbap.db";
+    //private static final String DB_NAME = "bob.db";
     private static final int VERSION = 2;
 
 
@@ -123,8 +124,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
 
-        super(context, TABLE_NAME, null, VERSION);
-
+        //super(context, TABLE_NAME, null, VERSION);
+        super(context, DB_NAME, null, VERSION);
     }
 
     @Override
@@ -289,7 +290,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Drink fetchDrinkInfo(int drink_id){
+
+    public Cursor fetchDrinkInfo(){
+
+        String[]columns =  {COL_DRINK_ID, COL_NAME, COL_COUNTRY, COL_VOL, COL_KCAL};
+
+        Cursor cursor = this.getReadableDatabase().query(TABLE_3_NAME,columns,null,null,null,null,null);
+
+        return cursor;
+    }
+
+    /*public Drink fetchDrinkInfo(int drink_id){
 
         Cursor c = this.getReadableDatabase().query(TABLE_3_NAME, new String[] { COL_DRINK_ID, COL_NAME, COL_COUNTRY, COL_VOL, COL_KCAL }, COL_SHEET_ID + " =? " + drink_id,
                 null, null, null, null, null);
@@ -322,6 +333,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return currentDrink;
 
-    }
+    } */
 
 }

@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        //final DBAdapter myDb = new DBAdapter(this);
 
         _etUsername = (EditText)findViewById(R.id.etUsername);
         _etPassword = (EditText)findViewById(R.id.etPassword);
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 String username = _etUsername.getText().toString();
                 String password = _etPassword.getText().toString();
 
+                //cursor = databaseHelper.LoginCheck(username,password);
                 cursor = databaseHelper.LoginCheck(username,password);
 
                 if (cursor != null) {

@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapter extends ArrayAdapter/*BaseAdapter*/ {
 
 
-    /* String[] beers;
+     String[] beers;
      int[] images;
      Context mContext;
 
@@ -67,8 +67,9 @@ public class CustomAdapter extends BaseAdapter {
          ImageView imageView;
          TextView textView;
      }
-     */
-    Context context;
+
+
+   /* Context context;
     ArrayList<CustomListView> arrayList;
 
     public CustomAdapter(Context context){
@@ -117,5 +118,5 @@ public class CustomAdapter extends BaseAdapter {
         imageView.setImageResource(temp_obj.image);
 
         return row;
-    }
+    } */
 }
