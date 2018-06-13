@@ -24,13 +24,6 @@ public class UserDrinksheetActivity extends AppCompatActivity {
 
     //DECLARATION
 
-
-    //String[] beerName = {"orval","chimay bleue","rochefort 8"};
-
-    //ArrayList <String> bubu;
-   // ArrayList<Drink> beer;
-
-
     //int[] imageId = {R.drawable.orval, R.drawable.chimay_bleue, R.drawable.rochefort};
 
     ImageButton imageButton;
@@ -58,7 +51,6 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         //DATABASE
-        //final DBAdapter myDb = new DBAdapter(this);
         final DatabaseHelper myDb = new DatabaseHelper(this);
 
 
@@ -67,9 +59,6 @@ public class UserDrinksheetActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 drinkArrayList.clear();
-
-                //OPEN DB
-                //myDb.openDB();
 
                 //RETRIEVE DATA FROM DB TO PUT IN ALERTDIALOG
                 Cursor cursor = myDb.fetchDrinkInfo();
@@ -80,45 +69,20 @@ public class UserDrinksheetActivity extends AppCompatActivity {
                 }
 
 
-                //METHOD: CREATE ALERTDIALOG
+                //METHOD: CREATE + SET UP ALERTDIALOG IN THE LAYOUT
                 showDialog();
 
-
-
-
-                //BUILD ALERTDIALOG
-                /*AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
-
-                theBuilder.setTitle("Fils,une bière se déguste avec Sagesse!");
-                theBuilder.setItems(beerName, new DialogInterface.OnClickListener() {
-                   @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),beerName[which]+" ajoutée à votre drinksheet", Toast.LENGTH_SHORT).show();
-
-
-                       drinkArrayList.add(beerName[which]);
-                       adapter.notifyDataSetChanged();
-                   }
-                }); */
-
-                //open_dialog(v,ad);
-                //theBuilder.setNegativeButton("Stop! je suis déjà charette!",null);
-                //AlertDialog alertDialog = theBuilder.create();
-                //alertDialog.show();
             }
 
 
         });
 
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //DATABASE
-        //final DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        //final DatabaseHelper myDb = new DatabaseHelper(this);
-        //populateListViewAlertDialog(myDb);
 
 
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private void showDialog(){
 
@@ -152,37 +116,7 @@ public class UserDrinksheetActivity extends AppCompatActivity {
     }
 
 
-
-   /* private void populateListViewAlertDialog(DatabaseHelper db){
-
-        Cursor cursor = (Cursor) db.fetchDrinkInfo();
-        String[] fieldName = new String[] {DatabaseHelper.COL_NAME};
-        int[] toViewId = new int[] {R.id.tvBeername};
-        SimpleCursorAdapter myCursorAdapter;
-        myCursorAdapter = new SimpleCursorAdapter(getBaseContext(),R.layout.row_item,cursor,fieldName,toViewId,0);
-        ListView myList = (ListView)findViewById(R.id.listview_alertDialog);
-        myList.setAdapter(myCursorAdapter);
-    } */
-
-
-
-
-   /* public void open_dialog(View view, AlertDialog dialog){
-
-        AlertDialog.Builder theBuilder = new AlertDialog.Builder(UserDrinksheetActivity.this);
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View row = inflater.inflate(R.layout.listview_layout,null);
-        ListView listView = (ListView)findViewById(R.id.listview_alertDialog);
-
-        listView.setAdapter(new CustomAdapter(this));
-
-        theBuilder.setView(row);
-
-        dialog = theBuilder.create();
-        dialog.show();
-
-    }*/
-
+   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     public double algorithmeAlcoolemie(double volume, double taux, int poids, int taille, int age, String sexe){
