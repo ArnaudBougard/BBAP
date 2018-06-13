@@ -42,7 +42,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
         final String username=bundle.getString("username");
 
-        _tvUsername.setText("Bonjour, " + username + " !");
+        _tvUsername.setText(username + ", modifiez librement vos informations !");
 
         _bSave.setOnClickListener(new View.OnClickListener() {
 
