@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         final DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        
+
 
         _etUsername = (EditText)findViewById(R.id.etUsername);
         _etPassword = (EditText)findViewById(R.id.etPassword);
