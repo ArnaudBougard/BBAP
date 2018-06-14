@@ -7,9 +7,19 @@
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/listDivider" />
 
     <EditText
         android:id="@+id/etPassword"

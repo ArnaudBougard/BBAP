@@ -33,10 +33,11 @@ public class UserDrinksheetActivity extends AppCompatActivity {
     //int[] imageId = {R.drawable.orval, R.drawable.chimay_bleue, R.drawable.rochefort};
 
     ImageButton imageButton;
-    ArrayList<String> drinkArrayList = new ArrayList<String>();;
+    ArrayList<String> drinkArrayList = new ArrayList<String>();
     AlertDialog alert;
 
     ArrayList<String> drinkList;
+    ArrayList<Integer> quantities = new ArrayList<Integer>();
     ArrayAdapter<String> adapter;
     ListView listView;
 
@@ -159,6 +160,8 @@ public class UserDrinksheetActivity extends AppCompatActivity {
                 ViewHolder viewHolder = new ViewHolder();
                 viewHolder.title = (TextView) convertView.findViewById(R.id.tvBeername);
                 viewHolder.quantity = (EditText) convertView.findViewById(R.id.etQuantity);
+
+
 
                 convertView.setTag(viewHolder);
             }

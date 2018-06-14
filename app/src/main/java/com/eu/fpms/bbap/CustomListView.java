@@ -9,5 +9,6 @@ public class CustomListView {
 
         this.name = name;
         this.image = image;
+
     }
 }
