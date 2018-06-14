@@ -242,9 +242,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     currentUser.setPassword(c.getString(NUM_COL_PASSWORD));
                     currentUser.setEmail(c.getString(NUM_COL_EMAIL));
                     currentUser.setSex(c.getString(NUM_COL_SEX));
-                    currentUser.setAge(c.getString(NUM_COL_AGE));
-                    currentUser.setHeight(c.getString(NUM_COL_HEIGHT));
-                    currentUser.setWeight(c.getString(NUM_COL_WEIGHT));
+                    currentUser.setAge(c.getInt(NUM_COL_AGE));
+                    currentUser.setHeight(c.getInt(NUM_COL_HEIGHT));
+                    currentUser.setWeight(c.getInt(NUM_COL_WEIGHT));
 
                 }while(c.moveToNext());
 
@@ -300,9 +300,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    /*public Drink fetchDrinkInfo(int drink_id){
+    public Drink getAllDrinkInfo(String beername){
 
-        Cursor c = this.getReadableDatabase().query(TABLE_3_NAME, new String[] { COL_DRINK_ID, COL_NAME, COL_COUNTRY, COL_VOL, COL_KCAL }, COL_SHEET_ID + " =? " + drink_id,
+        Cursor c = this.getReadableDatabase().query(TABLE_3_NAME, new String[] { COL_DRINK_ID, COL_NAME, COL_COUNTRY, COL_VOL, COL_KCAL }, COL_NAME + " =? " + beername,
                 null, null, null, null, null);
 
         Drink currentDrink = new Drink();
@@ -321,7 +321,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     currentDrink.setId(c.getInt(NUM_COL_DRINK_ID));
                     currentDrink.setName(c.getString(NUM_COL_NAME));
                     currentDrink.setCountry(c.getString(NUM_COL_COUNTRY));
-                    currentDrink.setVol(c.getString(NUM_COL_VOL));
+                    currentDrink.setVol(c.getInt(NUM_COL_VOL));
                     currentDrink.setKcal(c.getString(NUM_COL_KCAL));
 
                 }while(c.moveToNext());
@@ -333,6 +333,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return currentDrink;
 
-    } */
+    }
 
 }
