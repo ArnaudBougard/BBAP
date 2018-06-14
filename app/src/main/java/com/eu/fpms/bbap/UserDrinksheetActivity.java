@@ -112,6 +112,9 @@ public class UserDrinksheetActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(),"EN COURS DE CONSTRUCTION",Toast.LENGTH_SHORT).show();
                 //focntionCalculAlcool(myDb);
+
+                //double resultat = algorithmeAlcoolemie(150,5,69,181,22,"Homme");
+                //Toast.makeText(getApplicationContext(),"TAUX CALCULE = " + resultat,Toast.LENGTH_LONG).show();
             }
         });
 
@@ -331,6 +334,7 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         double volume = 5;
         double tauxTotalTemp = 0;
 
+
         nomUtilisateur = db.fetchUserInfo(userName);
 
         for(int i=0;i<sizeDrinkList;i++) {
@@ -339,7 +343,7 @@ public class UserDrinksheetActivity extends AppCompatActivity {
             String beerName = drinkList.get(i);
             boisson = db.getAllDrinkInfo(beerName);
 
-            tauxTotalTemp = tauxTotalTemp + algorithmeAlcoolemie(volume,boisson.getVol(), nomUtilisateur.getWeight(),nomUtilisateur.getHeight(),nomUtilisateur.getAge(),nomUtilisateur.getSex());
+            //tauxTotalTemp = tauxTotalTemp + algorithmeAlcoolemie(volume,boisson.getVol(), nomUtilisateur.getWeight(),nomUtilisateur.getHeight(),nomUtilisateur.getAge(),nomUtilisateur.getSex());
         }
 
          Toast.makeText(getApplicationContext(),"Taux Calculé = " + tauxTotalTemp,Toast.LENGTH_LONG).show();

@@ -321,7 +321,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     currentDrink.setId(c.getInt(NUM_COL_DRINK_ID));
                     currentDrink.setName(c.getString(NUM_COL_NAME));
                     currentDrink.setCountry(c.getString(NUM_COL_COUNTRY));
-                    currentDrink.setVol(c.getInt(NUM_COL_VOL));
+                    currentDrink.setVol(c.getString(NUM_COL_VOL));
                     currentDrink.setKcal(c.getString(NUM_COL_KCAL));
 
                 }while(c.moveToNext());
