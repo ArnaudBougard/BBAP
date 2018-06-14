@@ -5,13 +5,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -19,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDrinksheetActivity extends AppCompatActivity {
 
@@ -34,6 +39,8 @@ public class UserDrinksheetActivity extends AppCompatActivity {
     ArrayList<String> drinkList;
     ArrayAdapter<String> adapter;
     ListView listView;
+
+    MyListAdapter adapter2;
 
     Button calculAlcool;
     Button calculCaL;
@@ -52,8 +59,11 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.dynamicListView);
 
         drinkList = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(UserDrinksheetActivity.this, android.R.layout.simple_list_item_1, drinkList);
-        listView.setAdapter(adapter);
+        //adapter = new ArrayAdapter<String>(UserDrinksheetActivity.this, android.R.layout.simple_list_item_1, drinkList);
+        //listView.setAdapter(adapter);
+
+        adapter2 = new MyListAdapter(UserDrinksheetActivity.this, R.layout.row_item , drinkList);
+        listView.setAdapter(adapter2);
 
         //DATABASE
         final DatabaseHelper myDb = new DatabaseHelper(this);
@@ -103,13 +113,16 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         }
 
 
+
         theBuilder.setItems(names, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getApplicationContext(),names[which] + " ajoutée à votre drinksheet", Toast.LENGTH_SHORT).show();
 
                 drinkList.add(names[which]);
-                adapter.notifyDataSetChanged();
+                //adapter.notifyDataSetChanged();
+                adapter2.notifyDataSetChanged();
+
 
             }
         });
@@ -121,6 +134,53 @@ public class UserDrinksheetActivity extends AppCompatActivity {
 
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private class MyListAdapter extends ArrayAdapter<String>{
+
+        private int layout;
+
+        public MyListAdapter(@NonNull Context context, int resource, @NonNull List<String> objects) {
+            super(context, resource, objects);
+            layout = resource;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+            ViewHolder mainViewHolder = null;
+
+            if(convertView == null){
+
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                convertView = inflater.inflate(layout,parent,false);
+
+                ViewHolder viewHolder = new ViewHolder();
+                viewHolder.title = (TextView) convertView.findViewById(R.id.tvBeername);
+                viewHolder.quantity = (EditText) convertView.findViewById(R.id.etQuantity);
+
+                convertView.setTag(viewHolder);
+            }
+
+            else {
+
+                mainViewHolder = (ViewHolder) convertView.getTag();
+                mainViewHolder.title.setText(getItem(position));
+            }
+
+            return convertView;
+        }
+
+    }
+
+
+    public class ViewHolder{
+
+        TextView title;
+        EditText quantity;
+
+    }
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -45,7 +45,7 @@ public class CustomAdapter extends ArrayAdapter/*BaseAdapter*/ {
          if(convertView == null){
              LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
              convertView = inflater.inflate(R.layout.row_item, parent, false);
-             mViewHolder.imageView = (ImageView)convertView.findViewById(R.id.imviewBeer);
+             //mViewHolder.imageView = (ImageView)convertView.findViewById(R.id.imviewBeer);
              mViewHolder.textView = (TextView)convertView.findViewById(R.id.tvBeername);
              convertView.setTag(mViewHolder);  //we don't need to call findviewbyId everytime we need to inflate the layout
          }
