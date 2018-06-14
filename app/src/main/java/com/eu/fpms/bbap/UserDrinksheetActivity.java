@@ -22,8 +22,13 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class UserDrinksheetActivity extends AppCompatActivity {
 
@@ -37,6 +42,7 @@ public class UserDrinksheetActivity extends AppCompatActivity {
     AlertDialog alert;
 
     ArrayList<String> drinkList;
+
     ArrayAdapter<String> adapter;
     ListView listView;
 
@@ -45,6 +51,10 @@ public class UserDrinksheetActivity extends AppCompatActivity {
     Button calculAlcool;
     Button calculCaL;
     Button calculTemps;
+
+
+
+
 
 
 
@@ -57,12 +67,12 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         //INITIALIZATION
         imageButton = (ImageButton)findViewById(R.id.btn_alert_dialog);
         listView = (ListView) findViewById(R.id.dynamicListView);
-
         drinkList = new ArrayList<String>();
+
         //adapter = new ArrayAdapter<String>(UserDrinksheetActivity.this, android.R.layout.simple_list_item_1, drinkList);
         //listView.setAdapter(adapter);
 
-        adapter2 = new MyListAdapter(UserDrinksheetActivity.this, R.layout.row_item , drinkList);
+        adapter2 = new MyListAdapter(this, R.layout.row_item ,drinkList);
         listView.setAdapter(adapter2);
 
         //DATABASE
@@ -93,6 +103,40 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         });
 
 
+        //ON CLICK FOR ALCOHOL CALCUL BUTTON
+        calculAlcool = (Button)findViewById(R.id.button_calcul_alcool);
+
+        calculAlcool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(),"EN COURS DE CONSTRUCTION",Toast.LENGTH_SHORT).show();
+                //focntionCalculAlcool(myDb);
+            }
+        });
+
+
+        //ON CLICK FOR CALORIE BUTTON
+        calculCaL = (Button)findViewById(R.id.button_calcul_calorie);
+
+        calculCaL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"EN COURS DE CONSTRUCTION",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //ON CLICK FOR CALCUL TIME BUTTON
+        calculTemps = (Button)findViewById(R.id.button_calcul_temps);
+
+        calculTemps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"EN COURS DE CONSTRUCTION",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
 
     }
@@ -113,13 +157,13 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         }
 
 
-
         theBuilder.setItems(names, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getApplicationContext(),names[which] + " ajoutée à votre drinksheet", Toast.LENGTH_SHORT).show();
 
                 drinkList.add(names[which]);
+
                 //adapter.notifyDataSetChanged();
                 adapter2.notifyDataSetChanged();
 
@@ -151,6 +195,9 @@ public class UserDrinksheetActivity extends AppCompatActivity {
 
             ViewHolder mainViewHolder = null;
 
+
+
+
             if(convertView == null){
 
                 LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -159,7 +206,9 @@ public class UserDrinksheetActivity extends AppCompatActivity {
                 ViewHolder viewHolder = new ViewHolder();
                 viewHolder.title = (TextView) convertView.findViewById(R.id.tvBeername);
                 viewHolder.quantity = (EditText) convertView.findViewById(R.id.etQuantity);
+                viewHolder.tv_time = (TextView) convertView.findViewById(R.id.tvTime);
 
+                //setTag allow to store any objet
                 convertView.setTag(viewHolder);
             }
 
@@ -167,6 +216,7 @@ public class UserDrinksheetActivity extends AppCompatActivity {
 
                 mainViewHolder = (ViewHolder) convertView.getTag();
                 mainViewHolder.title.setText(getItem(position));
+                mainViewHolder.tv_time.setText(getCurrentTime());
             }
 
             return convertView;
@@ -179,10 +229,23 @@ public class UserDrinksheetActivity extends AppCompatActivity {
 
         TextView title;
         EditText quantity;
+        TextView tv_time;
 
     }
 
    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public String getCurrentTime(){
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        String time = format.format(calendar.getTime());
+
+        return time;
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     public double algorithmeAlcoolemie(double volume, double taux, int poids, int taille, int age, String sexe){
@@ -254,6 +317,36 @@ public class UserDrinksheetActivity extends AppCompatActivity {
         return taux_alco;
 
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //CETTE FONCTION EST EN COURS DE CONSTRUCTION
+
+    public void focntionCalculAlcool(DatabaseHelper db){
+
+        int sizeDrinkList = drinkList.size();
+        Drink boisson;
+        String userName = "ju";
+        User nomUtilisateur;
+        double volume = 5;
+        double tauxTotalTemp = 0;
+
+        nomUtilisateur = db.fetchUserInfo(userName);
+
+        for(int i=0;i<sizeDrinkList;i++) {
+
+
+            String beerName = drinkList.get(i);
+            boisson = db.getAllDrinkInfo(beerName);
+
+            tauxTotalTemp = tauxTotalTemp + algorithmeAlcoolemie(volume,boisson.getVol(), nomUtilisateur.getWeight(),nomUtilisateur.getHeight(),nomUtilisateur.getAge(),nomUtilisateur.getSex());
+        }
+
+         Toast.makeText(getApplicationContext(),"Taux Calculé = " + tauxTotalTemp,Toast.LENGTH_LONG).show();
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public double algorithmeCalories(int poids, int taille, int age, String sexe, double kcal){
 

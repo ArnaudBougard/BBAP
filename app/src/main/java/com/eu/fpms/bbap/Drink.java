@@ -5,12 +5,12 @@ public class Drink {
     private int id;
     private String name;
     private String country;
-    private String vol;
+    private double vol;
     private String kcal;
 
     public Drink(){}
 
-    public Drink(String name, String country, String vol, String kcal){
+    public Drink(String name, String country, double vol, String kcal){
 
         this.name = name;
         this.country = country;
@@ -43,11 +43,11 @@ public class Drink {
         this.country = country;
     }
 
-    public String getVol() {
+    public double getVol() {
         return vol;
     }
 
-    public void setVol(String vol) {
+    public void setVol(double vol) {
         this.vol = vol;
     }
 

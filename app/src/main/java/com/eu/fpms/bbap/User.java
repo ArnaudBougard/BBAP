@@ -13,13 +13,13 @@ public class User {
     private String password;
     private String email;
     private String sex;
-    private String age;
-    private String height;
-    private String weight;
+    private int age;
+    private int height;
+    private int weight;
 
     public User(){};
 
-    public User(String username, String password, String email, String sex, String age, String height, String weight) {
+    public User(String username, String password, String email, String sex, int age, int height, int weight) {
 
         this.username = username;
         this.password = password;
@@ -71,27 +71,27 @@ public class User {
         this.sex = sex;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
-    public String getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 }

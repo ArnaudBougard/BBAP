@@ -52,11 +52,15 @@ public class RegisterActivity extends AppCompatActivity {
                 String height=_etHeight.getText().toString();
                 String weight=_etWeight.getText().toString();
 
+                int ageDesired = Integer.parseInt(age);
+                int heightDesired = Integer.parseInt(height);
+                int weightDesired = Integer.parseInt(weight);
+
                 int radioId = radioGroup.getCheckedRadioButtonId();
                 radioButton = findViewById(radioId);
                 String sex=radioButton.getText().toString();
 
-                User user = new User(username, password, email, sex, age, height, weight);
+                User user = new User(username, password, email, sex, ageDesired, heightDesired, weightDesired);
 
                 databaseHelper.insertUser(user);
 

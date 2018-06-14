@@ -25,7 +25,7 @@
 
         <EditText
             android:id="@+id/etQuantity"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/tvBeername"
@@ -33,6 +33,15 @@
             android:background="@drawable/edit_text_style"
             android:ems="5"
             android:inputType="number" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/etQuantity"
+            android:layout_weight="1"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 </LinearLayout>
